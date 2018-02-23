@@ -6,9 +6,12 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "config": "1.29.4",
     "koa": "2.5.0",
+    "koa-morgan": "1.0.1",
     "koa-router": "7.4.0",
-    "koa-static": "4.0.2"
+    "koa-static": "4.0.2",
+    "winston": "2.4.0"
   },
   "devDependencies": {
     "@types/koa": "^2.0.44",
@@ -19,5 +22,8 @@
     "tslint": "^5.9.1",
     "tslint-config-airbnb": "^5.7.0",
     "typescript": "^2.7.2"
+  },
+  "scripts": {
+    "start": "nodemon --exec ts-node server/index.ts"
   }
 }

@@ -1,0 +1,16 @@
+
+### JS && TS
+node_modules/
+
+### BUILD
+build/
+
+### ENV
+.envrc
+
+### IDE
+.idea/
+.history/
+
+### OS
+.DS_Store

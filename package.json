@@ -1,0 +1,8 @@
+{
+  "name": "picsou-web",
+  "version": "1.0.0",
+  "description": "Web Application for Picsou project",
+  "author": "Paul-Guillaume Déjardin <pgdejardin@xebia.fr>",
+  "license": "MIT",
+  "private": true
+}

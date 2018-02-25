@@ -4,5 +4,30 @@
   "description": "Web Application for Picsou project",
   "author": "Paul-Guillaume Déjardin <pgdejardin@xebia.fr>",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@koa/cors": "^2.2.1",
+    "config": "1.29.4",
+    "koa": "2.5.0",
+    "koa-morgan": "1.0.1",
+    "koa-router": "7.4.0",
+    "koa-static": "4.0.2",
+    "winston": "2.4.0"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.0.44",
+    "@types/koa-bodyparser": "^4.2.0",
+    "@types/koa-router": "^7.0.27",
+    "@types/node": "^9.4.6",
+    "koa-bodyparser": "^4.2.0",
+    "nodemon": "^1.15.1",
+    "nps": "^5.7.1",
+    "ts-node": "^5.0.0",
+    "tslint": "^5.9.1",
+    "tslint-config-airbnb": "^5.7.0",
+    "typescript": "^2.7.2"
+  },
+  "scripts": {
+    "start": "nodemon --exec ts-node server/index.ts"
+  }
 }

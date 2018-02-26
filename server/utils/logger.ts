@@ -22,8 +22,9 @@ logger.add(winston.transports.Console, {
   level: 'trace',
   timestamp: () => new Date().toISOString(),
   colorize: true,
-  json: process.env.NODE_ENV !== 'development',
-  stringify: obj => JSON.stringify(obj),
+  // json: process.env.NODE_ENV !== 'development',
+  json: false,
+  stringify: obj => JSON.stringify(obj, null, 2),
 });
 
 function errorToString(err) {

@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "es2017",
+    "lib": [
+      "es2017",
+      "esnext.asynciterable"
+    ],
+    "outDir": "build/server",
+    "types": [
+      "node",
+      "koa",
+      "koa-bodyparser",
+      "koa-router"
+    ]
+  },
+  "include": [
+    "server/**/*"
+  ]
+}

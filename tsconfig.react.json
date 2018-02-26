@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "es2015",
+    "lib": [
+      "es2017",
+      "esnext.asynciterable"
+    ],
+    "jsx": "react",
+    "outDir": "build/public"
+  },
+  "include": [
+    "app/**/*"
+  ]
+}

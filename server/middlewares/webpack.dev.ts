@@ -1,18 +1,24 @@
 import * as Application from 'koa';
 import * as path from 'path';
 import * as webpack from 'webpack';
-import * as webpackMiddleware from 'koa-webpack';
 import * as send from 'koa-send';
+import * as devMiddleware from 'webpack-dev-middleware';
+import * as hotMiddleware from 'webpack-hot-middleware';
+import * as koa2Connect from 'koa2-connect';
 
 import logger from '../utils/logger';
 
 export default function addDevMiddlewares(app: Application) {
   const webpackConfig = require('../../internals/webpack.dev.config.js');
   const compiler = webpack(webpackConfig);
-  const middleware = webpackMiddleware({ compiler });
-  const fs = middleware.dev.fileSystem;
+  const expressDevMiddleware = devMiddleware(compiler);
+  const expressHotMiddleware = hotMiddleware(compiler);
+  const fs = expressDevMiddleware.fileSystem;
 
-  app.use(middleware);
+  // convert to koaMiddleware!
+  app.use(koa2Connect(expressDevMiddleware));
+  app.use(koa2Connect(expressHotMiddleware));
+
   app.use((ctx) => {
     fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
       if (err) {

@@ -14,7 +14,7 @@ import { routes as upload } from './api/upload';
 import webpackDevMiddleware from './middlewares/webpack.dev';
 
 const app = new Koa();
-const PORT = process.env.PORT || config.get('port') || '3000';
+const PORT = process.env.PORT || config.get('port') || '8080';
 const router = new Router({ prefix: '/api' });
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -31,6 +31,7 @@ router
 app
   .use(router.routes())
   .use(router.allowedMethods());
+
 
 if (isProd) {
   const outputPath = path.resolve(process.cwd(), 'build/public');

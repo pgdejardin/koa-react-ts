@@ -1,7 +1,5 @@
-// import * as React from 'react';
-// import * as ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import App from './containers/App/App.component';
 
-
-// console.log('This is the front');
-
-// console.log('test');
+ReactDOM.render(<App />, document.getElementById('app'));

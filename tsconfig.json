@@ -5,7 +5,12 @@
     "noImplicitAny": false,
     "sourceMap": true,
     "removeComments": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "jsx": "react",
+    "lib": [
+      "DOM",
+      "es2015"
+    ]
   },
   "exclude": [
     "node_modules"

@@ -7,7 +7,6 @@ export default async function (ctx: Context, next: () => Promise<any>) {
   try {
     await next();
   } catch (err) {
-    logger.warn('err');
     // if (err.name === 'UnauthorizedError') {
     //   ctx.status = 403;
     //   ctx.body = withError(err);
@@ -22,9 +21,11 @@ export default async function (ctx: Context, next: () => Promise<any>) {
     //   ctx.response.status = 400;
     //   ctx.response.body = withError(err);
     // } else {
-    logger.warn('Unhandled error', err);
-    ctx.response.status = 500;
-    ctx.response.body = withError(err);
+    // logger.warn('', err);
+    logger.error(err);
+    // ctx.response.status = 500;
+    // ctx.response.body = withError(err);
+    ctx.throw(500, withError(err));
     // }
   }
 }

@@ -1,6 +1,7 @@
 
 ### JS && TS
 node_modules/
+yarn-error.log
 
 ### BUILD
 build/

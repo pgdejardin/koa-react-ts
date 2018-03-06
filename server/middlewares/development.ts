@@ -11,7 +11,12 @@ import logger from '../utils/logger';
 export default function addDevMiddlewares(app: Application) {
   const webpackConfig = require('../../internals/webpack.dev.config.js');
   const compiler = webpack(webpackConfig);
-  const expressDevMiddleware = devMiddleware(compiler);
+  const expressDevMiddleware = devMiddleware(compiler, {
+    noInfo: true,
+    publicPath: webpackConfig.output.publicPath,
+    silent: true,
+    stats: 'errors-only',
+  });
   const expressHotMiddleware = hotMiddleware(compiler);
   const fs = expressDevMiddleware.fileSystem;
 

@@ -3,20 +3,19 @@ import * as Router from 'koa-router';
 import * as morgan from 'koa-morgan';
 import * as cors from '@koa/cors';
 import * as bodyParser from 'koa-bodyparser';
-import * as serve from 'koa-static';
-import * as send from 'koa-send';
-import * as path from 'path';
-import * as config from 'config';
 
-import logger from './utils/logger';
-import errors from './middlewares/errors';
 import { routes as upload } from './api/upload';
-import webpackDevMiddleware from './middlewares/webpack.dev';
+import errors from './middlewares/errors';
+import DevelopmentMiddleware from './middlewares/development';
+import productionMiddleware from './middlewares/production';
+import logger, { appStarted } from './utils/logger';
+import argv from './utils/argv';
+import port from './utils/port';
 
 const app = new Koa();
-const PORT = process.env.PORT || config.get('port') || '8080';
 const router = new Router({ prefix: '/api' });
 const isProd = process.env.NODE_ENV === 'production';
+const ngrok = (!isProd && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
 
 // http logger
 app
@@ -34,18 +33,25 @@ app
 
 
 if (isProd) {
-  const outputPath = path.resolve(process.cwd(), 'build/public');
-
-  // compression middleware compresses your server responses which makes them
-  // smaller (applies also to assets).
-  // app.use(compression());
-  app.use(serve(outputPath));
-
-  app.use(async ctx => await send(ctx, path.resolve(outputPath, 'index.html')));
+  productionMiddleware(app);
 } else {
-  webpackDevMiddleware(app);
+  DevelopmentMiddleware(app);
 }
 
-app.listen(PORT, () => {
-  logger.info(`Server started on port ${PORT}`);
+const customHost = argv.host || process.env.HOST;
+const host = customHost || null; // Let http.Server use its default IPv6/4 host
+const prettyHost = customHost || 'localhost';
+
+app.listen(port, host, () => {
+  if (ngrok) {
+    ngrok.connect(port, (innerErr, url) => {
+      if (innerErr) {
+        return logger.error(innerErr);
+      }
+
+      appStarted(port, prettyHost, url);
+    });
+  } else {
+    appStarted(port, prettyHost);
+  }
 });

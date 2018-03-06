@@ -9,6 +9,9 @@
     "react",
     "stage-0"
   ],
+  "plugins": [
+    "react-loadable/babel"
+  ],
   "env": {
     "production": {
       "only": [

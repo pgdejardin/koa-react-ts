@@ -23,3 +23,12 @@ I've used `webpack-dev-middleware` and `webpack-hot-middleware` (`express` middl
   - [ ] Add React-Router
   - [ ] Add Graphql with Apollo
   - [ ] Add more Demo Components
+  
+ ## Get started with
+ 
+ ```
+ git clone https://github.com/megakoresh/koa2-react.git yourprojectname
+ cd yourprojectname
+ rm -rf .git
+ git init .
+```

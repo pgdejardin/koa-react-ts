@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = require('./webpack.config')({
+  // mode: 'development',
   entry: [
     'react-hot-loader/patch',
     'webpack-hot-middleware/client?reload=true',
@@ -10,7 +11,9 @@ module.exports = require('./webpack.config')({
   ],
   output: {
     filename: '[name].js',
-    chunkFilename: '[name].chunk.js',
+  },
+  optimization: {
+    splitChunks: false,
   },
   // Emit a source map for easier debugging
   // See https://webpack.js.org/configuration/devtool/#devtool

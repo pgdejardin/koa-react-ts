@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { hot } from 'react-hot-loader';
 
-import { Home } from '../Home';
+import Home from '../Home/Home.loadable';
 import { AppBar } from '../../components/AppBar';
 import { Reboot } from 'material-ui';
 

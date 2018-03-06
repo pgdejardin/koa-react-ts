@@ -9,7 +9,8 @@
     "jsx": "react",
     "lib": [
       "DOM",
-      "es2015"
+      "es2015",
+      "es2017"
     ]
   },
   "exclude": [

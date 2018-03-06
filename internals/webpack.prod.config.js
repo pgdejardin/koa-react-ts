@@ -4,18 +4,52 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = require('./webpack.config')({
   // In production, we skip all hot-reloading stuff
+  // mode: 'production',
+  cache: true,
   entry: [
-    path.join(process.cwd(), 'app/index.tsx'),
+    path.resolve(process.cwd(), 'app/index.tsx'),
   ],
   output: {
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].chunk.js',
   },
-  mode: 'production',
+  // optimization: {
+  //   runtimeChunk: true,
+  //   splitChunks: {
+  //     chunks: 'async',
+  //     // minSize: 30000,
+  //     // minChunks: 2,
+  //     // maxAsyncRequests: 5,
+  //     // maxInitialRequests: 3,
+  //     // name: true,
+  //     // cacheGroups: {
+  //     //   default: false,
+  //     //   main: {
+  //     //     chunks: 'async',
+  //     //     minChunks: 1,
+  //     //   },
+  //     //   commons: {
+  //     //     reuseExistingChunk: true,
+  //     //     name: 'commons',
+  //     //     chunks: 'async'
+  //     //   },
+  //     //   vendors: {
+  //     //     test: /[\\/]node_modules[\\/]/,
+  //     //     priority: -10,
+  //     //     minChunks: 2,
+  //     //     chunks: 'async'
+  //     //   }
+  //     // }
+  //   },
+  // },
   plugins: [
-
-    // webpack.optimize.splitChunks,
-
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      children: true,
+      minChunks: 2,
+      async: true,
+    }),
     // Minify and optimize the index.html
     new HtmlWebpackPlugin({
       template: 'app/index.html',
@@ -34,4 +68,7 @@ module.exports = require('./webpack.config')({
       inject: true,
     }),
   ],
+  performance: {
+    assetFilter: (assetFilename) => !(/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename)),
+  },
 });

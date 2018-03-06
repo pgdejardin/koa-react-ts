@@ -8,15 +8,14 @@ injectGlobal`
   }
 
   body {
-    font-family: 'Roboto', sans-serif;
+    font-family: sans-serif;
   }
   
-  //body.fontLoaded {
-  //  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  //}
+  body.fontLoaded {
+    font-family: 'Roboto', sans-serif;
+  }
 
   #app {
-    //background-color: #fafafa;
     min-height: 100%;
     min-width: 100%;
   }

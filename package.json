@@ -8,6 +8,7 @@
     "@koa/cors": "2.2.1",
     "chalk": "2.3.2",
     "config": "1.29.4",
+    "fontfaceobserver": "^2.0.13",
     "ip": "1.1.5",
     "koa": "2.5.0",
     "koa-bodyparser": "4.2.0",
@@ -31,11 +32,11 @@
     "winston": "2.4.0"
   },
   "devDependencies": {
+    "@types/ip": "^0.0.30",
     "@types/koa": "^2.0.44",
     "@types/koa-bodyparser": "^4.2.0",
     "@types/koa-compress": "^2.0.8",
     "@types/koa-router": "^7.0.27",
-    "@types/ip": "^0.0.30",
     "@types/minimist": "^1.2.0",
     "@types/node": "^9.4.6",
     "babel-core": "^6.26.0",

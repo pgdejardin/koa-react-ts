@@ -1,15 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
+// import IconButton from 'material-ui/IconButton';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
-import MenuIcon from 'material-ui-icons/Menu';
+// import Button from 'material-ui/Button';
+// import MenuIcon from 'material-ui-icons/Menu';
 
-interface Props {
-  classes: any;
-}
+// interface Props {
+//   classes: any;
+// }
 
 const styles = {
   root: {
@@ -24,7 +24,7 @@ const styles = {
   },
 };
 
-export function PicsouAppBar(props: any) {
+export function PicsouAppBar(props) {
   const { classes } = props;
   return <div className={classes.root}>
     <AppBar position="static">

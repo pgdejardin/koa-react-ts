@@ -3,19 +3,24 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = require('./webpack.config')({
+  mode: 'production',
   // In production, we skip all hot-reloading stuff
   entry: [
-    path.join(process.cwd(), 'app/index.tsx'),
+    path.join(process.cwd(), 'app/index.js'),
   ],
   output: {
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].chunk.js',
   },
-  mode: 'production',
+  optimization: {
+    runtimeChunk: true,
+    splitChunks: {
+      chunks: 'all',
+    },
+    minimize: true,
+    mergeDuplicateChunks: true,
+  },
   plugins: [
-
-    // webpack.optimize.splitChunks,
-
     // Minify and optimize the index.html
     new HtmlWebpackPlugin({
       template: 'app/index.html',
@@ -27,7 +32,7 @@ module.exports = require('./webpack.config')({
         removeEmptyAttributes: true,
         removeStyleLinkTypeAttributes: true,
         keepClosingSlash: true,
-        minifyJS: true,
+        // minifyJS: true,
         minifyCSS: true,
         minifyURLs: true,
       },

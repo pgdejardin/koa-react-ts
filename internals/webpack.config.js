@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = options => ({
+  mode: options.mode,
   entry: options.entry,
   output: Object.assign({
     path: path.resolve(process.cwd(), 'build/public'),
@@ -10,14 +11,11 @@ module.exports = options => ({
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        loader: 'ts-loader',
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
         exclude: /node_modules/,
-        options: {
-          configFile: path.resolve(process.cwd(), 'tsconfig.react.json'),
-        },
       },
-      { test: /\.html$/, use: 'html-loader' },
+      {test: /\.html$/, use: 'html-loader'},
       {
         test: /\.(eot|svg|otf|ttf|woff|woff2)$/,
         use: 'file-loader',
@@ -45,8 +43,15 @@ module.exports = options => ({
   resolve: {
     modules: ['app', 'node_modules'],
     extensions: ['.tsx', '.ts', '.js'],
+    mainFields: [
+      'browser',
+      'jsnext:main',
+      'main',
+    ],
   },
-  mode: options.mode || process.env.NODE_ENV || 'development',
+  optimization: Object.assign({}, {
+    namedModules: true,
+  }, options.optimization),
   plugins: options.plugins.concat([
     new webpack.ProvidePlugin({
       // make fetch available
@@ -60,8 +65,8 @@ module.exports = options => ({
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
-    new webpack.NamedModulesPlugin(),
   ]),
+  devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
   performance: options.performance || {},
 });

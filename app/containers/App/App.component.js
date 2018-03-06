@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import { hot } from 'react-hot-loader';
+import Reboot  from 'material-ui/Reboot';
 
-import { Home } from '../Home';
-import { AppBar } from '../../components/AppBar';
-import { Reboot } from 'material-ui';
+import AppBar from '../../components/AppBar';
+import Home from '../Home';
 
 export function App() {
   return <React.Fragment>

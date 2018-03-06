@@ -20,7 +20,17 @@ I've used `webpack-dev-middleware` and `webpack-hot-middleware` (`express` middl
   - `TsLint`  
 
 ## Roadmap
+  - [ ] Better README.md
   - [ ] Add Redux
   - [ ] Add React-Router
   - [ ] Add Graphql with Apollo
   - [ ] Add more Demo Components
+
+## Get started with
+
+```
+  git clone https://github.com/pgdejardin/koa-react-ts.git yourprojectname
+  cd yourprojectname
+  rm -rf .git
+  git init .
+```

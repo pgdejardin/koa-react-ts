@@ -32,11 +32,13 @@ module.exports = require('./webpack.config')({
         removeEmptyAttributes: true,
         removeStyleLinkTypeAttributes: true,
         keepClosingSlash: true,
-        // minifyJS: true,
         minifyCSS: true,
         minifyURLs: true,
       },
       inject: true,
     }),
   ],
+  performance: {
+    assetFilter: (assetFilename) => !(/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename)),
+  },
 });
